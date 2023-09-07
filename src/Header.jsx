@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Modal } from "./Modal";
 import { useEffect, useState } from "react";
 import { Signup } from "./Signup";
@@ -43,7 +42,7 @@ export function Header() {
       </a>{" "}
       | <Logout />
       <nav>
-        <a href="#">Home</a> | <a href="/schedules">My Schedule</a>
+        <a href="#">Home</a> | <a href="/schedules">My Schedules</a> | <a href="schedules/new">Add to Schedule</a>
       </nav>
     </header>
   );

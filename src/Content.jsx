@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
 import { PlantsShow } from "./PlantsShow";
 import { SchedulesIndex } from "./ScheduleIndex";
+import { SchedulesNew } from "./SchedulesNew";
 import { Modal } from "./Modal";
 
 export function Content() {
@@ -34,6 +35,14 @@ export function Content() {
     });
   };
 
+  const handleCreateSchedule = (params, successCallback) => {
+    console.log("handleCreateSchedule", params);
+    axios.post("http://localhost:3000/schedules.json", params).then((response) => {
+      setSchedules([...schedules, response.data]);
+      successCallback();
+    });
+  };
+
   const handleClose = () => {
     console.log("handleClose");
     setIsPlantsShowVisible(false);
@@ -48,6 +57,7 @@ export function Content() {
       <Routes>
         <Route path="/" element={<PlantsIndex plants={plants} onShowPlant={handleShowPlant} />} />
         <Route path="/schedules" element={<SchedulesIndex schedules={schedules} />} />
+        <Route path="/schedules/new" element={<SchedulesNew onCreateSchedule={handleCreateSchedule} />} />
       </Routes>
 
       <Modal show={isPlantsShowVisible} onClose={handleClose}>
