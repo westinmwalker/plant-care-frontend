@@ -3,9 +3,6 @@ import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
 import { PlantsShow } from "./PlantsShow";
 import { Modal } from "./Modal";
-import { Signup } from "./Signup";
-import { Login } from "./Login";
-import { Logout } from "./Logout";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
@@ -35,17 +32,6 @@ export function Content() {
 
   return (
     <div>
-      <Signup />
-      <br />
-      ----------------------------
-      <br />
-      <Login />
-      <br />
-      ----------------------------
-      <br />
-      <Logout />
-      <br />
-      ----------------------------
       <PlantsIndex plants={plants} onShowPlant={handleShowPlant} />
       <Modal show={isPlantsShowVisible} onClose={handleClose}>
         <PlantsShow plant={currentPlant} />
