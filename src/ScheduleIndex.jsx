@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 export function SchedulesIndex(props) {
   return (
     <div>
@@ -6,9 +7,9 @@ export function SchedulesIndex(props) {
       {props.schedules.map((schedule) => (
         <div key={schedule.id}>
           <img src={schedule.image_url} />
-          <h2>{schedule.plant_id}</h2>
-          <h2>{schedule.user_id}</h2>
-          <h2>{schedule.watering_start_date}</h2>
+          <h2>Plant ID: {schedule.plant_id}</h2>
+          <h2>User ID: {schedule.user_id}</h2>
+          <h2>Watering start date: {schedule.watering_start_date}</h2>
         </div>
       ))}
     </div>
