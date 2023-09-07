@@ -1,10 +1,13 @@
+import axios from "axios";
 import { Modal } from "./Modal";
+import { useEffect, useState } from "react";
 import { Signup } from "./Signup";
-import { useState } from "react";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
+import { SchedulesIndex } from "./ScheduleIndex";
 
 export function Header() {
+  const [schedules, setSchedules] = useState([]);
   const [isSignupVisible, setIsSignupVisible] = useState(false);
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
@@ -25,6 +28,16 @@ export function Header() {
     setIsLoginVisible(false);
   };
 
+  const handleIndexSchedules = () => {
+    console.log("handleIndexSchedules");
+    axios.get("http://localhost:3000/schedules.json").then((response) => {
+      console.log(response.data);
+      setSchedules(response.data);
+    });
+  };
+
+  useEffect(handleIndexSchedules, []);
+
   return (
     <header>
       <Modal show={isSignupVisible} onClose={handleSignupClose}>
@@ -42,7 +55,7 @@ export function Header() {
       </a>{" "}
       | <Logout />
       <nav>
-        <a href="#">Home</a> | <a href="#">Link</a>
+        <a href="#">Home</a> | <a href={<SchedulesIndex schedules={schedules} />}>My Schedule</a>
       </nav>
     </header>
   );

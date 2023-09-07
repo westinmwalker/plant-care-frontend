@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
 import { PlantsShow } from "./PlantsShow";
@@ -32,7 +33,10 @@ export function Content() {
 
   return (
     <div>
-      <PlantsIndex plants={plants} onShowPlant={handleShowPlant} />
+      <Routes>
+        <Route path="/" element={<PlantsIndex plants={plants} onShowPlant={handleShowPlant} />} />
+      </Routes>
+
       <Modal show={isPlantsShowVisible} onClose={handleClose}>
         <PlantsShow plant={currentPlant} />
       </Modal>
