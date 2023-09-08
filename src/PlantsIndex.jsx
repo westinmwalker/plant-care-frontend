@@ -6,8 +6,8 @@ export function PlantsIndex(props) {
       {props.plants.map((plant) => (
         <div key={plant.id}>
           <h2>{plant.name}</h2>
-          <button onClick={() => props.onShowPlant(plant)}>More information</button>
           <img src={plant.image_url} />
+          <button onClick={() => props.onShowPlant(plant)}>More information</button>
           <br />
         </div>
       ))}
