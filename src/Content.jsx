@@ -4,14 +4,19 @@ import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
 import { PlantsShow } from "./PlantsShow";
 import { SchedulesIndex } from "./SchedulesIndex";
+import { SchedulesShow } from "./SchedulesShow";
 import { SchedulesNew } from "./SchedulesNew";
 import { Modal } from "./Modal";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
   const [schedules, setSchedules] = useState([]);
+
   const [isPlantsShowVisible, setIsPlantsShowVisible] = useState(false);
   const [currentPlant, setCurrentPlant] = useState({});
+
+  const [isSchedulesShowVisible, setIsSchedulesShowVisible] = useState(false);
+  const [currentSchedule, setCurrentSchedule] = useState({});
 
   const handleIndexPlants = () => {
     console.log("handleIndexPlants");
@@ -35,6 +40,12 @@ export function Content() {
     });
   };
 
+  const handleShowSchedule = (schedule) => {
+    console.log("handleShowSchedule", schedule);
+    setIsSchedulesShowVisible(true);
+    setCurrentSchedule(schedule);
+  };
+
   const handleCreateSchedule = (params, successCallback) => {
     console.log("handleCreateSchedule", params);
     axios.post("http://localhost:3000/schedules.json", params).then((response) => {
@@ -43,9 +54,14 @@ export function Content() {
     });
   };
 
-  const handleClose = () => {
-    console.log("handleClose");
+  const handlePlantClose = () => {
+    console.log("handlePlantClose");
     setIsPlantsShowVisible(false);
+  };
+
+  const handleScheduleClose = () => {
+    console.log("handleScheduleClose");
+    setIsSchedulesShowVisible(false);
   };
 
   useEffect(handleIndexPlants, []);
@@ -55,13 +71,16 @@ export function Content() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<PlantsIndex plants={plants} onShowPlant={handleShowPlant} />} />
-        <Route path="/schedules" element={<SchedulesIndex schedules={schedules} />} />
+        <Route path="/plants" element={<PlantsIndex plants={plants} onShowPlant={handleShowPlant} />} />
+        <Route path="/" element={<SchedulesIndex schedules={schedules} onshowSchedule={handleShowSchedule} />} />
         <Route path="/schedules/new" element={<SchedulesNew onCreateSchedule={handleCreateSchedule} />} />
       </Routes>
 
-      <Modal show={isPlantsShowVisible} onClose={handleClose}>
+      <Modal show={isPlantsShowVisible} onClose={handlePlantClose}>
         <PlantsShow plant={currentPlant} />
+      </Modal>
+      <Modal show={isSchedulesShowVisible} onClose={handleScheduleClose}>
+        <SchedulesShow schedule={currentSchedule} />
       </Modal>
     </div>
   );
