@@ -42,7 +42,8 @@ export function Header() {
       </a>{" "}
       | <Logout />
       <nav>
-        <a href="#">Home</a> | <a href="/schedules">My Schedules</a> | <a href="schedules/new">Add to Schedule</a>
+        <a href="http://localhost:5173">Home</a> | <a href="/schedules">My Schedules</a> |{" "}
+        <a href="schedules/new">Add to Schedule</a>
       </nav>
     </header>
   );

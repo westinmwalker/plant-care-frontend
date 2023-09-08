@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
 import { PlantsShow } from "./PlantsShow";
-import { SchedulesIndex } from "./ScheduleIndex";
+import { SchedulesIndex } from "./SchedulesIndex";
 import { SchedulesNew } from "./SchedulesNew";
 import { Modal } from "./Modal";
 
